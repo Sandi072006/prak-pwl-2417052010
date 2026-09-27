@@ -1,29 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
+<section class="page-shell" aria-labelledby="page-title">
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">DATA AKADEMIK</p>
+            <h1 id="page-title">Daftar pengguna</h1>
+            <p class="page-description">Kelola data pengguna dan kelas dalam satu tempat.</p>
+        </div>
+        <a class="button button-primary" href="{{ route('user.create') }}"><span aria-hidden="true">+</span> Tambah pengguna</a>
+    </div>
 
-<h1>Daftar Pengguna</h1>
+    <div class="list-toolbar">
+        <div>
+            <span class="toolbar-label">Total pengguna</span>
+            <strong class="total-count">{{ $users->count() }}</strong>
+        </div>
+        <span class="toolbar-note">Data terbaru</span>
+    </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nama</th>
-            <th>NPM</th>
-            <th>Kelas</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach ($users as $user)
-            <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->nama }}</td>
-                <td>{{ $user->nim }}</td>
-                <td>{{ $user->nama_kelas }}</td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-
+    <section class="table-panel" aria-label="Tabel daftar pengguna">
+        <x-data-table
+            :rows="$users"
+            :columns="[
+                ['label' => 'ID', 'key' => 'id'],
+                ['label' => 'Nama', 'key' => 'nama'],
+                ['label' => 'NPM', 'key' => 'nim'],
+                ['label' => 'Kelas', 'key' => 'nama_kelas'],
+            ]"
+        />
+    </section>
+</section>
 @endsection

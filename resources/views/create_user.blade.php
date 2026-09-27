@@ -1,38 +1,46 @@
-```blade
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4">
-    <h1>Buat Pengguna Baru</h1>
+<section class="page-shell form-shell" aria-labelledby="page-title">
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">DATA AKADEMIK</p>
+            <h1 id="page-title">Tambah pengguna</h1>
+            <p class="page-description">Isi informasi pengguna untuk menambahkannya ke daftar.</p>
+        </div>
+        <a class="button button-secondary" href="{{ url('/user') }}">Kembali ke daftar</a>
+    </div>
 
-    <form action="{{ route('user.store') }}" method="POST">
+    <form class="form-panel" action="{{ route('user.store') }}" method="POST">
         @csrf
 
-        <div class="mb-3">
-            <label for="nama" class="form-label">Nama:</label>
-            <input type="text" id="nama" name="nama" class="form-control">
+        <div class="field-group">
+            <label for="nama">Nama lengkap</label>
+            <input type="text" id="nama" name="nama" value="{{ old('nama') }}" autocomplete="name" required maxlength="255" @error('nama') aria-invalid="true" aria-describedby="nama-error" @enderror>
+            @error('nama') <p class="field-error" id="nama-error">{{ $message }}</p> @enderror
         </div>
 
-        <div class="mb-3">
-            <label for="npm" class="form-label">NPM:</label>
-            <input type="text" id="npm" name="npm" class="form-control">
+        <div class="field-group">
+            <label for="npm">NPM</label>
+            <input type="text" id="npm" name="npm" value="{{ old('npm') }}" inputmode="numeric" required maxlength="255" @error('npm') aria-invalid="true" aria-describedby="npm-error" @enderror>
+            @error('npm') <p class="field-error" id="npm-error">{{ $message }}</p> @enderror
         </div>
 
-        <div class="mb-3">
-            <label for="kelas_id" class="form-label">Kelas:</label>
-            <select name="kelas_id" id="kelas_id" class="form-select">
-                @foreach ($kelas as $kelasItem)
-                    <option value="{{ $kelasItem->id }}">
-                        {{ $kelasItem->nama_kelas }}
-                    </option>
+        <div class="field-group">
+            <label for="kelas">Kelas</label>
+            <input type="text" id="kelas" name="kelas" value="{{ old('kelas') }}" list="kelas-options" autocomplete="off" required maxlength="255" placeholder="Ketik nama kelas" @error('kelas') aria-invalid="true" aria-describedby="kelas-error" @enderror>
+            <datalist id="kelas-options">
+                @foreach ($kelas->unique('nama_kelas') as $kelasItem)
+                    <option value="{{ $kelasItem->nama_kelas }}">
                 @endforeach
-            </select>
+            </datalist>
+            @error('kelas') <p class="field-error" id="kelas-error">{{ $message }}</p> @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">
-            Submit
-        </button>
+        <div class="form-actions">
+            <a class="button button-secondary" href="{{ url('/user') }}">Batal</a>
+            <button class="button button-primary" type="submit">Simpan pengguna</button>
+        </div>
     </form>
-</div>
+</section>
 @endsection
-```
