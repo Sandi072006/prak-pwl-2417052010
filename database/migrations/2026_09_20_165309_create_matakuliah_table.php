@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('matakuliah', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_mk');
-            $table->unsignedTinyInteger('sks');
+            $table->uuid('id')->primary();
+            $table->string('nama_mk',100);
+            $table->Integer('sks');
             $table->timestamps();
         });
     }

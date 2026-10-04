@@ -3,10 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MataKuliahController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/matakuliah', [MataKuliahController::class, 'index']);
+Route::post('/matakuliah', [MataKuliahController::class, 'store'])->name('matakuliah.store');
+Route::get('/matakuliah/create',[MataKuliahController::class, 'create'])->name('matakuliah.create');
 
 Route::get('/profile', [ProfileController::class, 'profile']);
 Route::get('/user', [UserController::class, 'index']);
