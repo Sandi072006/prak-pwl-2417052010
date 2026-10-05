@@ -20,15 +20,33 @@
     </div>
 
     <section class="table-panel" aria-label="Tabel daftar mata kuliah">
-        <x-data-table
-            :rows="$mks"
-            :columns="[
-                ['label' => 'ID', 'key' => 'id'],
-                ['label' => 'Nama mata kuliah', 'key' => 'nama_mk'],
-                ['label' => 'SKS', 'key' => 'sks'],
-            ]"
-            empty-message="Belum ada mata kuliah."
-        />
+        <table class="data-table" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style="text-align: left; padding: 10px;">ID</th>
+                    <th style="text-align: left; padding: 10px;">Nama mata kuliah</th>
+                    <th style="text-align: left; padding: 10px;">SKS</th>
+                    <th style="text-align: left; padding: 10px;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($mks as $mk)
+                    <tr>
+                        <td style="padding: 10px;">{{ $mk->id }}</td>
+                        <td style="padding: 10px;">{{ $mk->nama_mk }}</td>
+                        <td style="padding: 10px;">{{ $mk->sks }}</td>
+                        <td style="padding: 10px;">
+                            <a href="{{ route('matakuliah.edit', $mk->id) }}">Edit</a>
+                            <form action="{{ route('matakuliah.destroy', $mk->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus mata kuliah ini?')">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </section>
 </section>
 @endsection
