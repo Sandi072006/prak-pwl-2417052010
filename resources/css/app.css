@@ -65,6 +65,20 @@ h1 { margin: 0; color: var(--ink); font-size: 30px; line-height: 1.2; }
 .data-table tbody tr:hover { background: #fbfcfb; }
 .data-table td:first-child { width: 74px; color: var(--muted); }
 .empty-state { padding: 42px 18px !important; color: var(--muted); text-align: center; }
+.flash-message { display: flex; align-items: center; gap: 11px; margin: 0 0 16px; padding: 13px 16px; border: 1px solid; border-radius: 9px; font-size: 13px; font-weight: 600; }
+.flash-success { border-color: #b7dfc7; background: linear-gradient(110deg, #effaf3, #f8fcf9); color: #205f3d; }
+.flash-error { border-color: #edc4c1; background: linear-gradient(110deg, #fff3f1, #fffafa); color: #963b36; }
+.flash-icon { display: grid; width: 24px; height: 24px; flex: 0 0 24px; place-items: center; border-radius: 50%; background: rgb(255 255 255 / 75%); font-size: 13px; font-weight: 900; }
+.table-actions { display: flex; align-items: center; gap: 8px; }
+.table-actions form { margin: 0; }
+.action-button { display: inline-flex; min-height: 34px; align-items: center; justify-content: center; gap: 6px; padding: 0 10px; border: 1px solid; border-radius: 7px; cursor: pointer; font-size: 12px; font-weight: 750; transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease; }
+.action-button:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgb(36 49 45 / 10%); }
+.action-button:focus-visible { outline: 3px solid rgb(35 107 82 / 25%); outline-offset: 2px; }
+.action-button svg { width: 15px; height: 15px; }
+.action-edit { border-color: #c9e2d3; background: linear-gradient(135deg, #f2fbf5, #e6f4eb); color: #236b52; }
+.action-edit:hover { background: #d9efdf; }
+.action-delete { border-color: #f0d0ce; background: linear-gradient(135deg, #fff8f7, #ffefed); color: #a43e38; }
+.action-delete:hover { background: #ffe2df; }
 .form-shell { max-width: 780px; }
 .form-panel { display: grid; gap: 21px; padding: 26px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 .field-group { display: grid; gap: 8px; }

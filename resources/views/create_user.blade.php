@@ -28,12 +28,7 @@
 
         <div class="field-group">
             <label for="kelas">Kelas</label>
-            <input type="text" id="kelas" name="kelas" value="{{ old('kelas') }}" list="kelas-options" autocomplete="off" required maxlength="255" placeholder="Ketik nama kelas" @error('kelas') aria-invalid="true" aria-describedby="kelas-error" @enderror>
-            <datalist id="kelas-options">
-                @foreach ($kelas->unique('nama_kelas') as $kelasItem)
-                    <option value="{{ $kelasItem->nama_kelas }}">
-                @endforeach
-            </datalist>
+            <input type="text" id="kelas" name="kelas" value="{{ old('kelas') }}" required maxlength="255" placeholder="Masukkan nama kelas" @error('kelas') aria-invalid="true" aria-describedby="kelas-error" @enderror>
             @error('kelas') <p class="field-error" id="kelas-error">{{ $message }}</p> @enderror
         </div>
 
